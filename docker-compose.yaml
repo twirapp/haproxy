@@ -1,6 +1,7 @@
 services:
   haproxy:
     image: haproxy:3.1-alpine
+    restart: unless-stopped
     networks:
       - twir
       - cloudflared
