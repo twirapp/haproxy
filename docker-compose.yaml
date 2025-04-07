@@ -1,0 +1,24 @@
+services:
+  haproxy:
+    image: haproxy:3.1-alpine
+    networks:
+      - twir
+      - cloudflared
+    volumes:
+      - ./haproxy.cfg:/usr/local/etc/haproxy/haproxy.cfg:ro
+    deploy:
+      restart_policy:
+        condition: any
+        delay: 3s
+        max_attempts: 30
+      endpoint_mode: dnsrr
+      placement:
+        constraints:
+          - node.role == manager
+
+networks:
+  twir:
+    name: twir
+    external: true
+  cloudflared:
+    external: true
