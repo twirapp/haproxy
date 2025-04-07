@@ -14,3 +14,5 @@ networks:
     external: true
   cloudflared:
     external: true
+  haproxy:
+    external: true
